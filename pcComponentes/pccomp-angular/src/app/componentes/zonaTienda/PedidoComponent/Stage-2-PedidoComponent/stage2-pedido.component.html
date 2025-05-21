@@ -1,0 +1,39 @@
+<div class="container">
+    <!-- =================== mostrar/añadir/eliminar direcciones envio/facturacion ==============================================================================-->
+     @for(tipo of ['envio','facturacion']; track $index)
+     {
+        <div class="row mt-4">
+            <div class="col">
+                <div class="container">
+                    <div class="row"><div class="col"><h4><strong>Direcciones de {{tipo}}</strong></h4></div></div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- mostrar tantos minicomponentes como direcciones de envio/facturacion tenga el cliente...si no tiene, pues mostrar q no tiene...-->
+                            <app-mini-direccion></app-mini-direccion>
+                        </div>
+                    </div>
+    
+                    <hr>
+    
+                    <div class="row">
+                        <div class="col d-flex flex-row justify-content-start">
+                            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalDirEnvio" >
+                                {{ tipo=='envio' ? '+ Añadir otra direccion' : '+ Añadir datos de facturacion'}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     }
+
+    <!-- ========================================================================================================================================================== -->
+
+
+    <!-- 
+            modal para añadir/editar direccion de envio/facturacion OJO!!! se emplea el mismo para los dos tipos de direcciones,
+            se ocultan o muestran campos en funcion si estas en una direccion de envio o en una direccion de facturacion
+    -->
+        <app-modal-dir-envio></app-modal-dir-envio>
+    <!-- ------------------------------------------- -->
+</div>

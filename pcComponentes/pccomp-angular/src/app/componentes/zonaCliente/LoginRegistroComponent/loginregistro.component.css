@@ -1,0 +1,59 @@
+h6 {
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid rgb(192, 186, 186); 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+ } 
+ 
+ h6 span { 
+     background:#fff; 
+     padding:0 10px; 
+ }
+
+ a {
+    color: #333333;
+    text-decoration: underline;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+ }
+ a:hover {
+    color: rgb(255, 96, 0);
+ }
+
+  button[id="btnlogingmail"]:hover {
+    background-color:transparent;
+    color: #333333;
+  }
+
+ button[type="submit"] {
+    
+        display: inline-flex;
+        position: relative;
+        outline: 0px;
+        text-align: center;
+        -moz-box-align: center;
+        align-items: center;
+        user-select: none;
+        vertical-align: middle;
+        text-decoration: none;
+        font-family: Open Sans, open-sans, sans-serif;
+        color: rgb(255, 255, 255);
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background: rgb(255, 96, 0);
+        transition: background 0.3s ease 0s, box-shadow 0.3s ease 0s, border-color 0.3s ease 0s;
+        cursor: pointer;
+        font-size: 1.0625rem;
+        line-height: 1.5rem;
+        font-weight: 400;
+        letter-spacing: normal;
+        padding: 11px 1rem;
+        min-height: 3rem;
+        width: 100%;
+        -moz-box-pack: center;
+        justify-content: center;
+}    
+ 

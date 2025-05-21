@@ -1,0 +1,136 @@
+@if(this.producto())
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <img [src]="this.producto().imagenProducto" style="display:block; max-width: 100%; height: auto;">
+            </div>
+            <div class="col-6">
+                <div class="container">
+                    <div class="row">
+                        <div class="col"><h5><strong>{{this.producto().nombre}}</strong></h5></div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col d-flex flex-row mb-3 justify-content-start">
+                            @if(this.producto().descuento > 0){
+                                <div class="p-2" >
+                                    <h2><strong>
+                                        <span style="color:orangered">
+                                            {{this.producto().precio | calculadescuento: this.producto().descuento }} €
+                                        </span>
+                                    </strong></h2>
+                                </div>
+                            }
+                            @else {
+                                <div class="p-2"><h2><strong>{{this.producto().precio}} €</strong></h2></div>    
+                            }
+    
+                            <div class="p-2 d-flex flex-column align-items-start">
+                                <div><small>PVP</small></div>
+                                <div><span class="text-mutted" style="text-decoration: line-through">{{this.producto().precio}} €</span></div>
+                            </div>
+    
+                            <div class="p-2 d-flex flex-column align-items-start">
+                                <div><small>DTO.</small></div>
+                                <div><small><span style="background-color: red; color:white">- {{this.producto().descuento}} %</span></small></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col">
+                            @for(item of [1,2,3,4,5]; track $index)
+                            {
+                                <i class="fa-solid fa-star"></i> 
+                            }
+                            ( {{this.producto().opiniones}} ) | Review
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col">
+                            <p>Vendido por <strong>{{this.producto().vendidoYenviado}}</strong></p>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-2"><strong>Marca:</strong></div>
+                        <div class="col-10">{{this.producto().marca}} | Cod.Articulo: {{this.producto().codArticulo}}</div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-2"><strong>Cantidad:</strong></div>
+                        <div class="col-4">
+                            <button class="btn btn-light btn-sm btncantidad" type="button" >-</button>
+                            <label class="labelcantidad">0</label>
+                            <button class="btn btn-light btn-sm btncantidad" type="button">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col d-flex flex-row">
+                            <button class="btn btn-light btnheart" type="button"><i class="fa-solid fa-heart"></i></button>
+                            <button class="btn btn-light btnshoppingcart" type="button"  ><i class="fa-solid fa-cart-shopping"></i> Añadir al carrito</button>
+                            <button class="btn btn-light btncomprar" type="button">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- caracteristicas,opiniones,preguntas...-->
+        <div class="row">
+            <div class="col">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <button class="nav-link active" id="nav-caracteristicas-tab" data-bs-toggle="tab" data-bs-target="#nav-caracteristicas" type="button" role="tab" aria-controls="nav-caracteristicas" aria-selected="true">CARACTERISTICAS</button>
+                      <button class="nav-link" id="nav-opiniones-tab" data-bs-toggle="tab" data-bs-target="#nav-opiniones" type="button" role="tab" aria-controls="nav-opiniones" aria-selected="false">OPINIONES</button>
+                      <button class="nav-link" id="nav-videos-tab" data-bs-toggle="tab" data-bs-target="#nav-videos" type="button" role="tab" aria-controls="nav-videos" aria-selected="false">VIDEOS / REVIEWS</button>
+                      <button class="nav-link" id="nav-preguntas-tab" data-bs-toggle="tab" data-bs-target="#nav-preguntas" type="button" role="tab" aria-controls="nav-preguntas" aria-selected="false">PREGUNTAS</button>
+                    </div>
+                  </nav>
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-caracteristicas" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                        <div class="container">
+                            <div class="row mt-4">
+                                <div class="col"><h4>Caracteristicas:</h4></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <ul>
+                                    @for(linea of this.producto().caracteristicas.split('$'); track $index )
+                                    {
+                                        <li >{{linea}}</li>
+                                    }
+                                </ul>    
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col"><h4>Especificaciones:</h4></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <ul>
+                                    @for(linea of this.producto().especificaciones.split('$'); track $index )
+                                    {
+                                        <li >{{linea}}</li>
+                                    }
+                                </ul>    
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="tab-pane fade" id="nav-opiniones" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
+                    <div class="tab-pane fade" id="nav-videos" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
+                    <div class="tab-pane fade" id="nav-preguntas" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
+                </div>            
+            </div>
+        </div>
+    </div>
+}
+
+
+
+

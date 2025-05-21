@@ -1,0 +1,149 @@
+================================================================================================================================================================================================================
+================================================================================================================================================================================================================
+    _                      _                      _   _           _          _ ____            __  __                         ____  ____  
+   / \   _ __   __ _ _   _| | __ _ _ __          | \ | | ___   __| | ___    | / ___|          |  \/  | ___  _ __   __ _  ___ |  _ \| __ ) 
+  / _ \ | '_ \ / _` | | | | |/ _` | '__|  _____  |  \| |/ _ \ / _` |/ _ \_  | \___ \   _____  | |\/| |/ _ \| '_ \ / _` |/ _ \| | | |  _ \ 
+ / ___ \| | | | (_| | |_| | | (_| | |    |_____| | |\  | (_) | (_| |  __/ |_| |___) | |_____| | |  | | (_) | | | | (_| | (_) | |_| | |_) |
+/_/   \_\_| |_|\__, |\__,_|_|\__,_|_|            |_| \_|\___/ \__,_|\___|\___/|____/          |_|  |_|\___/|_| |_|\__, |\___/|____/|____/ 
+               |___/                                                                                              |___/                   
+	Examen FINAL-ORDINARIA.Programacion Web Ent.Cliente
+		1º PARTE: Angular + NodeJS + Mongodb
+
+	Duración: 3h
+	
+ NOTAS IMPORTANTES:
+	- debes usar EL PROYECTO QUE YO OS PASO
+	- el código debe funcionar
+	- si el código es copy-paste de chat-gpt/otro compañero evaluare la mitad 	
+================================================================================================================================================================================================================
+================================================================================================================================================================================================================
+
+
+
+================================================================================================================================================================================================================
+IMPORTANTE:  
+
+	- USAR NUEVAS CARACTERISTICAS DE ANGULAR V.19 --- SEÑALES, @for, @if, @switch, etc... nada de *ngFor, *ngIf, etc
+
+	
+	- TODAS LAS OPERACIONES CONTRA NODEJS DEL LADO DEL CLIENTE, DEBERAN COMPROBAR SI EL JWT DE SESION QUE DEBE MANDAR EL USUARIO ES CORRECTO (firmado por el server) Y
+	COINCIDE CON ALGUN DE LOS DATOS DEL  CLIENTE Q SE MANDAN Y QUE LE PUEDEN IDENTIFICAR (email o idCliente)
+
+		 - si token invalido: se denegara operación y se redirigirá al login
+		 - si token de sesión expirado, se mandara mensaje al cliente para que mande el refresh token con codigo 401 (q debe interceptar el interceptor meter el refreshtoken), 
+		   y si esta ok el refeshtoken y no ha expirado, se generara un nuevo jwt + refreshtoken y se mandaran de vuelta al cliente, a la par q se hace la operación que quería el cliente hacer.
+
+		 ===> los tokens de sesión jwt y refreshtoken deben mandarse con un INTERCEPTOR (1 pto) <====
+
+================================================================================================================================================================================================================
+
+
+	-------------------------
+	Usuario pruebas Mongodb:
+	-------------------------
+		email: 		mio@mio.es
+		password: 	Hola1234!
+
+
+
+================================================================================================================================================================================================================
+1º ( 4 ptos )  AÑADIR/QUITAR/MODIFICAR PRODUCTOS carrito compra (STAGE-1 o fase-1 del carrito)
+================================================================================================================================================================================================================
+OJO!! SOLO SE PODRA INICIAR UN CARRITO DE LA COMPRA SI EL USUARIO ESTA LOGUEADO
+Todas las operaciones sobre el pedido actual del cliente se deben centralizar en el servicio existente: storage-service.ts (BASADO EN SEÑALES, nada de localstorage, observables, etc)
+
+
+	AÑADIR PRODUCTO AL CARRITO ( 1 ptos)
+	----------------------------------
+	- USANDO SERVICIO STORAGE-SERVICE, añadir producto desde vista MOSTRAR-PRODUCTO.COMPONENT  al carrito (boton AÑADIR AL CARRITO) en la cantidad seleccionada 
+	(debes controlar q no se pueden poner cantidades negativas,  deshabilitando directamente el boton "-" cuando la cantidad sea 1)
+	 
+	- al hacerlo, automaticamente en el header del MAIN-LAYOUT.COMPONENT en el mini-icono del carrito de la compra se actualizara cantidad del carrito y si se pincha, aparece un desplegable
+	con el producto añadido (componente MINI-ITEMP-PEDIDO.OFFCANVAS.COMPONENT) y en q cantidad.
+	
+	- se debe actualizar subtotal y total del carrito (se presupone unos gastos de envio de 2€ constantes, en realidad dependeria de la direc.de envio)
+
+	
+	BORRAR PRODUCTO DEL CARRITO ( 1 ptos)
+	-------------------------------------
+	- USANDO SERVICIO STORAGE-SERVICE, borrar producto del carrito cuando se pincha:
+	
+			- boton papelera de cada producto dentro de cada comp.MINI-ITEMP-PEDIDO.OFFCANVAS.COMPONENT en el desplegable del header del MAIN-LAYOUT.COMPONENT en el mini-icono del carrito,
+			  al borrar se debe actualizar cantidad total de productos en dicho icono, ademas de subtotal y total
+			  
+			- cuando pulsas VER ARTICULOS, saltas a la vista del CARRITO ACTUAL (componente  MOSTRAR-PEDIDO-LAYOUT.COMPONENT) a su fase o stage-1 de enumeracion de los productos que tiene
+			el carrito (STAGE1-PEDIDO.COMPONENT). Cada producto es un componente ITEM-PEDIDO.COMPONENT, pues si pulsas el boton de la papelera en dicho componente se eliminara del carrito
+			
+	- se debe actualizar subtotal y total del carrito (se presupone unos gastos de envio de 2€ constantes, en realidad dependeria de la direc.de envio)
+			  
+
+	
+	MODIFICAR CANTIDAD DE PRODUCTO EN CARRITO ( 1 ptos)
+	---------------------------------------------------
+	- USANDO SERVICIO STORAGE-SERVICE, modificar producto del carrito cuando cuando pulsas VER ARTICULOS, saltas a la vista del CARRITO ACTUAL (componente  MOSTRAR-PEDIDO-LAYOUT.COMPONENT) 
+	a su fase o stage-1 de enumeracion de los productos que tiene el carrito (STAGE1-PEDIDO.COMPONENT). Cada producto es un componente ITEM-PEDIDO.COMPONENT, pues si pulsas los botones + o -
+	puedes modificar CANTIDADES de dicho producto en el carrito.
+	
+	- debes controlar que no puedes poner cifras negativas, deshabilita el boton "-" cuando la cantidad sea de 1
+	- se debe actualizar subtotal y total del carrito (se presupone unos gastos de envio de 2€ constantes, en realidad dependeria de la direc.de envio)
+
+
+
+	CODIFICACION SERVICIO STORAGE-SERVICE OPERACIONES SOBRE CARRITO (1 pto)
+	-----------------------------------------------------------------------
+	- uso de SEÑALES y un unico metodo para hacer las tres operaciones, donde le pases el tipo de operacion a realizar y lo haga sobre el carrito actual.
+	
+	
+	
+
+================================================================================================================================================================================================================
+2º ( 4 ptos ) MOSTRAR/AÑADIR/QUITAR DIRECCIONES ENVIO/FACTURACION carrito compra
+================================================================================================================================================================================================================
+Cuando pulsas el boton REALIZAR PEDIDO del componente MOSTRAR-PEDIDO-LAYOUT.COMPONENT  pasas a la fase 2 o STAGE-2 del carrito, que es definir al menos una DIRECCION DE ENVIO Y FACTURACION:
+(SIEMPRE Y CUANDO HAYA PRODUCTOS EN EL CARRITO!!! si no hay elementos en el carrito no te podra dejar pasar a este stage)
+
+	MOSTRAR DIRECCIONES ENVIO/FACTURACION Y CAMBIAR PREDETERMINADA (0,5 ptos)
+	-------------------------------------------------------------------------
+	USANDO SERVICIO STORAGE-SERVICE
+	- ( 0,25 ptos ) hay q mostrar las direcciones de envio/facturacion del cliente en componente STAGE2-COMPONENT. Cada direccion se representa en componente MINI-DIRECCION.COMPONENT
+	- ( 0,75 ptos )cuando se pulsa el radio-button del componente q representa cada direccion MINI-DIRECCION.COMPONENT, la haces predeterminada a esa dir.seleccionada
+	
+
+	AÑADIR DIRECCIONES ENVIO/FACTURACION (2 ptos)
+	---------------------------------------------
+	USANDO SERVICIO STORAGE-SERVICE
+	- si pincahs sobre boton "+ Añadir ...." se dispara un modal para poder añadir una direccion de envio o facturacion (es el mimsmo modal para ambas, 
+	en funcion del tipo de direccion muestras unas cosas un otras). Debes cargar Provincias desde NODEJS (esta endpoint) y cuando cambias de provincia cargar municipios de esa provincia.
+	
+	-  Validaciones
+		- Cuando todos los campos estan ok, y se pulsa boton GUARDAR se almacena info de la direccion en datos del cliente
+		- SOLO PUEDE HABER UNA SOLA DIRECCION PREDETERMINADA de ENVIO y otra de FACTURACIOn.
+
+
+	
+	ELIMINAR DIRECCINES ENVIO/FACTURACION (0,5 ptos)
+	------------------------------------------------
+	USANDO SERVICIO STORAGE-SERVICE
+	- si pinchas el boton "ELIMINAR" se borrara la direccion de la lista de direcciones del cliente
+
+
+	CODIFICACION SERVICIO STORAGE-SERVICE OPERACIONES SOBRE CARRITO y CLIENTE ( 1 pto)
+	----------------------------------------------------------------------------------
+	- uso de SEÑALES para manejar actualizar prop.Direcciones del objeto Cliente, y establecer direccion de pago/envio en carrito
+	
+		
+		
+================================================================================================================================================================================================================
+3º ( 1 pto ) FINALIZAR carrito compra y envio de datos a nodejs para almacenarlos en mongodb
+================================================================================================================================================================================================================
+Una vez seleccionada una direccion de envio y otra de facturacion, cuando saltas al STAGE-5 (no hay q hacer los stage-3 ni stage-4) debes almacenar los datos del pedido actual  junto con direcciones nuevas/borradas
+en mongodb, dentro de coleccion "clientes" en propiedad "pedidos" y "direcciones"
+
+	- no se podra hacer un pedido si no hay productos obviamente
+	- no se podra hacer un pedido si no hay una direccion de envio y otra de facturacion
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+.miboton {
+    background-image: none;
+    background-color: transparent;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid;
+    transition: all .2s ease-in-out;
+    padding: .785rem 2rem;
+    line-height: 1.33333;
+    border-radius: .2143rem;
+
+}
+.btn-orange {
+    color: #ff6000;
+    border-color: #ff6000;
+}
+
+.btn-grey {
+    color:grey;
+    border-color:grey;
+}
+
+.btn-orange:hover {
+        background-color: #ff6000;
+        color: #fff;
+    }
+.btn-grey:hover {
+    background-color: grey;
+    color:white;
+}

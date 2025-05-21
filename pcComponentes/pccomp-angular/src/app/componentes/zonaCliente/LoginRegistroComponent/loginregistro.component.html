@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row">
+        {{ this.formVista.valueChanges | async | json }}
+    </div>
+
+    <div class="row m-4">
+        <div class="col justify-content-center aling-items-center">
+            <a [routerLink]="['/']" routerLinkActive="router-link-active" >
+                <img src="/images/logo_PcComponentes.com.png" class="rounded mx-auto d-block">
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6"><img src="/images/login_panel_izqdo.png" class="img-fluid"></div>
+        <div class="col-4">
+            <div class="container">
+                <div class="row"><div class="col"><h4><strong>Iniciar sesión</strong></h4></div></div>
+                <div class="row m-3"><div class="col d-grid gap-1"><button type="button" id="btnlogingmail"  class="btn btn-outline-secondary" (click)="LoginGoogle()"><img  src="/images/icono_login_GMAIL.png">Inicia sesion con Google</button></div></div>
+                <!-- https://stackoverflow.com/questions/5214127/css-technique-for-a-horizontal-line-with-words-in-the-middle?page=1&tab=scoredesc#tab-top -->
+                <div class="row"><div class="col m-4"><h6><span> O bien </span></h6></div></div>
+                
+                <div class="row">
+                    <div class="col">
+                        <form [formGroup]="formVista" (ngSubmit)="LoginRegistro()">
+
+                            @if(this.enLogin()==false){
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="login" placeholder="¿Cual es tu nombre?" formControlName="login" >
+                                </div>    
+                            }
+
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="E-mail*" formControlName="email">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" id="password" placeholder="Contraseña*" formControlName="password">
+                            </div>
+
+                            @if(this.enLogin()==false){
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" id="repassword" placeholder="Repetir Contraseña*" formControlName="repassword">
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                      He leido y acepto la <a href="">politica de privacidad</a>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Recibir <strong>descuentos exclusivos</strong>, novedades y tendencias por e-mail. Me puedo dar de baja desde mi panel.
+                                    </label>
+                                </div>                                
+                                <div class="m-3">
+                                    <button type="submit" class="btn btn-">Crear cuenta</button>
+                                </div> 
+                            }
+                            @else {
+                                <a [routerLink]="['/Tienda/Cliente/ResetPassword']" routerLinkActive="router-link-active">He olvidado mi contraseña</a>
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-">Iniciar sesion</button>
+                                </div>    
+                            }
+
+                        </form>        
+                    </div>
+                </div>    
+
+                <div class="row">
+                    <div class="col m-4">
+                        <h6><span> {{ this.enLogin() ? '¿Eres nuevo cliente?':'Ya tengo una cuenta'}} </span></h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-grid gap-1">
+                        <button type="button" (click)="IrALoginRegistro()" class="btn btn-outline-secondary">
+                            <span> {{ this.enLogin() ? 'Crear cuenta' : 'Iniciar Sesion' }}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

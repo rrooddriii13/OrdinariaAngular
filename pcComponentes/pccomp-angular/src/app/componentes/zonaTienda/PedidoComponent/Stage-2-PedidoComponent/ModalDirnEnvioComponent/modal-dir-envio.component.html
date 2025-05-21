@@ -1,0 +1,100 @@
+<div class="modal fade" id="modalDirEnvio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir/Modificar direccion de envio/facturacion</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- ...... formulario campos direccion ....... -->
+                <div class="container">
+                    <!-- esta fila solo se muestra en direcciones de facturacion, el resto en los dos tipos de direccion -->
+                    <div class="row mt-2">
+                        @for(tipo of ['Particular','Empresa','Autonomo'];track $index)
+                        {
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" [id]="$index" [checked]="tipo=='Particular'">
+                                    <label class="form-check-label" [for]="$index">
+                                      {{tipo}}
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <!-- -------------------------------------------------------------------------------------------------->
+                    <div class="row mt-2">
+                        <div class="col-md form-floating mb-3">
+                            <input type="text" class="form-control" id="txtnombre" placeholder="*Nmbre">
+                            <label for="txtnombre">Nombre:</label>
+                        </div>
+                        <div class="col-md form-floating mb-3">
+                            <input type="text" class="form-control" id="txtapellidos" placeholder="*Apellidos">
+                            <label for="txtapellidos">Apellidos:</label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md form-floating mb-3">
+                            <input type="text" class="form-control" id="txtdireccion" placeholder="Calle y Numero*">
+                            <label for="txtdireccion">Calle y numero:</label>
+                        </div>
+                        <div class="col-md form-floating mb-3">
+                            <input type="text" class="form-control" id="txtotrosdatos" placeholder="*Datos adicionales (piso,puerta, barrio....)">
+                            <label for="txtotrosdatos">Datos adicionales (piso,puerta, barrio....):</label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md form-floating mb-3">
+                            <input type="text" class="form-control" id="txtcp" placeholder="Codigo Postal*">
+                            <label for="txtcp">Codigo Postal:</label>
+                        </div>
+                        <div class="col-md form-floating mb-3">
+                            <input type="text" class="form-control" id="txttelefono" placeholder="*Telefono movil (+34...)">
+                            <label for="txttelefono">Telefono movil(+34....):</label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="selectprovs" aria-label="selecciona provincia">
+                                  <option selected>Selecciona provincia</option>
+                                  <option value="1">...</option>
+                                </select>
+                                <label for="selectprovs">Provincia:</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="selectmunis" aria-label="selecciona municipio">
+                                  <option selected>Selecciona municipio</option>
+                                  <option value="1">...</option>
+                                </select>
+                                <label for="selectmunis">Municipio:</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-2">
+                        <div class="col-md">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"  id="marcarPredeterminada">
+                                <label class="form-check-label" for="marcarPredeterminada">
+                                    Marcar como predeterminada (para futuras compras).
+                                </label>
+                            </div>                            
+                        </div>
+                    </div>
+
+                </div>
+            <!-- ------------------------------------------ -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="miboton btn-grey"  data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="miboton btn-orange" >Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>

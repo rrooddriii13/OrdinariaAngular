@@ -1,0 +1,108 @@
+<!-- layout de pccomponentes... -->
+<div class="container-fliud m-4">
+    <div class="row mt-4" style="border-style:none none solid none; border-width: 1px; border-color: lightgrey">
+        <div class="col-3">
+            <a [routerLink]="['/']" routerLinkActive="router-link-active" >
+                <img src="/images/logo_PcComponentes.com.png" width="138" height="48" />
+                <button class="btn btn-light" id="btndirec" data-bs-toggle="offcanvas" data-bs-target="#offcanvascats" aria-controls="offcanvascats">
+                    <i class="fa-solid fa-bars"></i> <strong> Todas las categorias</strong>
+                </button>  
+                <div class="offcanvas offcanvas-start"data-bs-backdrop="static"  data-bs-scroll="true" tabindex="-1" id="offcanvascats" aria-labelledby="offcanvascatsLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvascatsLabel">Categorias</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="this.subcategorias.set([])"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                            <ul class="list-group">
+                                @if(this.subcategorias().length > 0){
+                                    @for(item of this.subcategorias(); track $index)
+                                    {
+                                        <li class="list-group-item subcats" (click)="CargarProductos(item.path)">
+                                            {{item.categoria}}
+                                        </li>
+                                    }
+                                }
+                                @else {
+                                    @for(item of this.categoriasRaices(); track $index)
+                                    {
+                                        <li class="list-group-item" (click)="RecuperaCategorias(item.path)" >
+                                                {{item.categoria}} >
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6">
+            <!-- formulario de busqueda-->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Buscar..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-light" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+        <div class="col-3 d-flex">            
+            <!-- botones de Mis Compromisos, Mi Cuenta y Mi Cesta -->
+
+            @if(this.cliente()){
+                <div class="p-2 flex-fill">
+                    <a class="btn btn-light btn-sm" [routerLink]="['/Cliente/Panel/Mis-datos']" routerLinkActive="router-link-active" >
+                        <i class="fa-solid fa-user"></i> {{this.cliente()!.cuenta.email}}
+                    </a>    
+                </div>    
+            }
+            @else {
+                <div class="p-2 flex-fill">
+                    <a class="btn btn-light btn-sm" [routerLink]="['/Cliente/Login']" routerLinkActive="router-link-active">
+                        <i class="fa-solid fa-user"></i> Mi Cuenta                        
+                    </a>    
+                </div>
+            }
+
+            <!-- ..... minicesta pedido en header ....... -->
+            <div class="p-2 flex-fill">
+                <button class="btn btn-light btn-sm" 
+                        data-bs-toggle="offcanvas" 
+                        data-bs-target="#offcanvasRight" 
+                        aria-controls="offcanvasRight" >
+
+                    <i class="fa-solid fa-cart-shopping position-relative">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                        </span>
+                    </i> Mi Cesta
+
+                </button>
+            </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Mi Cesta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                         <div >
+                            <app-mini-item-pedido-off-canvas></app-mini-item-pedido-off-canvas>
+                         </div>
+                        <hr />
+                        <div class="d-flex justify-content-between">
+                            <div>Unidades:</div>
+                            <div>0</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div>Total(IVA incluido):</div>
+                            <div>0  €</div>
+                        </div>
+                        <div class="d-flex justify-content-center"><a class="btn btn-orange" [routerLink]="['/Pedido']" routerLinkActive="router-link-active"  >Ver articulos en tu cesta</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"  style="border-style:none none solid none; border-width: 1px; border-color: lightgrey">
+        <div class="col">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>
+

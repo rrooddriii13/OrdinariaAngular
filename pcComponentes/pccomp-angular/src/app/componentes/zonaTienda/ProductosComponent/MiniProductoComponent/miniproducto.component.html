@@ -1,0 +1,26 @@
+<div class="card" style="width: 18rem;" (click)="MostrarDetallesProducto()">
+    <img [src]="this.producto()!.imagenProducto" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{this.producto()!.nombre}}</h5>
+      
+      @if(this.producto()!.descuento > 0){
+        <p class="card-text">
+            <!-- el precio descontado se puede hacer con una pipe ... -->
+            <strong><span style="color:red"> {{this.producto()!.precio | calculadescuento: this.producto()!.descuento }} €</span></strong> <small> PVPR<span style=" text-decoration: line-through">{{this.producto()!.precio}} €</span> </small>
+         </p>    
+      }
+      @else {
+        <p class="card-text"><strong>{{this.producto()!.precio}} €</strong></p>
+      }
+
+
+      <p class="card-text">
+        @for(item of [1,2,3,4,5]; track $index){
+            <i class="fa-solid fa-star"></i> 
+        }
+        ( {{this.producto()!.opiniones}} )
+      </p>
+      
+      <p class="card-text">Vendido por <strong>{{this.producto()!.vendidoYenviado}}</strong></p>
+    </div>
+  </div>

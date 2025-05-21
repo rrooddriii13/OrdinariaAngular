@@ -1,0 +1,13 @@
+<div class="d-flex flex-column">
+    <!-- lista de items del pedido...-->
+    <app-item-pedido></app-item-pedido>
+    <app-item-pedido></app-item-pedido>
+    <!-- ---------------------------- -->
+    <div class="d-flex flex-row justify-content-between mt-4">
+        <div>
+            <button class="btn btn-outline-secondary btn-sm" type="button"><i class="fa-solid fa-trash"></i> Vaciar cesta</button>
+            <button class="btn btn-outline-secondary btn-sm" type="button"><i class="fa-solid fa-heart"></i> Guardar lista</button>
+        </div>
+        <div><button class="btn btn-outline-secondary btn-sm" type="button" (click)="GotoProducts()">Seguir comprando</button></div>
+    </div>
+</div>

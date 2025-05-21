@@ -1,0 +1,25 @@
+<div class="container">
+    <!-- breadcrumb bootstrap-->
+    <div class="row">
+
+    </div>
+
+    <hr>
+    <!-- fila de botones filtro: relevancia,precio mas bajo, precio mas alto, ... -->
+    <div class="row">
+
+    </div>
+    <hr>
+    @if(this.productos().length > 0){
+        <div class="row" >
+            @for(prod of this.productos(); track $index){
+                <div class="col-4" >
+                    <app-miniproducto [producto]="prod"></app-miniproducto>
+                </div>
+            }
+        </div>
+    }
+    @else {
+        <div class="row"><div class="col">Ni un puto producto de esa categoria...</div></div>
+    }
+</div>

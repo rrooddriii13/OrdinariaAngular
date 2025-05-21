@@ -1,0 +1,41 @@
+.labelcantidad {
+    border-color: currentcolor rgb(204, 204, 204);
+    border-style: none solid;
+    border-width: medium 1px;
+    border-image: none 100% / 1 / 0 stretch;
+    line-height: 1.25rem;
+    letter-spacing: normal;
+    font-weight: 700;
+    font-size: 0.875rem;
+    margin: 0px 1px;
+    width: 2.5rem;
+    vertical-align: middle;
+    text-align: center;
+    -moz-box-pack: center;
+    justify-content: center;
+}
+
+button.btncantidad {
+    border: medium none;
+    display: inline-flex;
+    position: relative;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    outline: 0px;
+    width: 2.5rem;
+    text-align: center;
+    -moz-box-align: center;
+    align-items: center;
+    user-select: none;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: Open Sans, open-sans, sans-serif;
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    cursor: pointer;
+    transition: background 0.3s ease 0s, box-shadow 0.3s ease 0s, border-color 0.3s ease 0s;
+}
